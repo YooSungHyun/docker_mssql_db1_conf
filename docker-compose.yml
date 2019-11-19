@@ -1,0 +1,20 @@
+version: '3'
+services:
+    db1:
+        build: ./db1
+        # network_mode: "host"
+        # pid: "host"
+        container_name: db1
+        volumes:
+          - .:/home/docker-container/mssql
+        privileged: true
+        environment:
+            SA_PASSWORD: "Tjdgus05!"
+            ACCEPT_EULA: "Y"
+            MSSQL_AGENT_ENABLED: "true"
+            TZ: "Asia/Seoul"
+            MSSQL_PID: "Express"
+        ports:
+            - "2064:1433"
+        # command: bash -c '/opt/mssql/bin/mssql-conf set filelocation.defaultdatadir /home/docker-container/mssql/db1/data && mv /var/opt/mssql/data/tempdb.mdf /home/docker-container/mssql/db1/data && mv /var/opt/mssql/data/templog.ldf /home/docker-container/mssql/db1/data'
+        hostname: db1
